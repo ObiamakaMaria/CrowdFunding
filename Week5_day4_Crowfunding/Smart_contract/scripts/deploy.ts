@@ -1,8 +1,12 @@
 import { ethers } from "hardhat";
+import { erc20 } from "../typechain-types/@openzeppelin/contracts/token";
 
 
   async function deploy() {
-    const crowdfunding = await ethers.deployContract("CrowdFunding");
+
+    const erc20Address = "0xaFAc6C1785035528aeA1d6aE150C980CBcE71034";
+
+    const crowdfunding = await ethers.deployContract("CrowdFunding", [erc20Address]);
 
     await crowdfunding.waitForDeployment();
 
@@ -10,7 +14,6 @@ import { ethers } from "hardhat";
 
 
   }
-
 
 deploy().catch((error) => {
     console.error(error);
